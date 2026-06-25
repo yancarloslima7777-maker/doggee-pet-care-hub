@@ -178,30 +178,6 @@ function Header() {
     </header>
   );
 }
-          <img
-            src={logoImg}
-            alt="Doggee Pet Store"
-            className="h-14 w-auto rounded-full object-cover shadow-[var(--shadow-warm)]"
-          />
-        </a>
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
-          <a href="#categorias" className="hover:text-primary transition">Produtos</a>
-          <a href="#sobre" className="hover:text-primary transition">Sobre</a>
-          <a href="#avaliacoes" className="hover:text-primary transition">Avaliações</a>
-          <a href="#horarios" className="hover:text-primary transition">Horários</a>
-        </nav>
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-whatsapp text-whatsapp-foreground px-4 py-2 text-sm font-semibold hover:opacity-90 transition shadow-sm"
-        >
-          <MessageCircle className="h-4 w-4" /> WhatsApp
-        </a>
-      </div>
-    </header>
-  );
-}
 
 function Hero() {
   return (
