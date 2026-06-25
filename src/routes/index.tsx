@@ -285,9 +285,9 @@ function About() {
 
 function Stat({ value, label, big = false }: { value: string; label: string; big?: boolean }) {
   return (
-    <div className={`rounded-2xl bg-card border border-border p-6 ${big ? "row-span-1" : ""}`}>
-      <div className="font-display text-4xl md:text-5xl font-bold text-primary leading-none">{value}</div>
-      <div className="mt-2 text-sm text-muted-foreground">{label}</div>
+    <div className={`rounded-2xl bg-card border border-border p-4 sm:p-6 min-w-0 ${big ? "row-span-1" : ""}`}>
+      <div className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-primary leading-none break-words">{value}</div>
+      <div className="mt-2 text-xs sm:text-sm text-muted-foreground">{label}</div>
     </div>
   );
 }
