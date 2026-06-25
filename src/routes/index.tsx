@@ -14,6 +14,7 @@ import {
   Truck,
   Heart,
   ShieldCheck,
+  Quote,
 } from "lucide-react";
 import heroImg from "@/assets/hero-pets.jpg";
 import logoImg from "@/assets/doggee-logo.png";
@@ -320,6 +321,10 @@ function SocialProof() {
     {
       name: "Breno Rocha",
       text: "O lugar realmente tem uma grande variedade de produtos, é limpo e organizado, algo que prezo muito. Sempre sou muito bem atendido.",
+    },
+    {
+      name: "Bianca Camara",
+      text: "Minha experiência é sempre incrível, compro aqui a um bom tempo e o atendimento é sempre ótimo, muito atenciosos!",
     },
   ];
 
