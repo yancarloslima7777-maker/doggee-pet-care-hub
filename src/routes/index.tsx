@@ -62,7 +62,7 @@ function Header() {
           <img
             src={logoImg}
             alt="Doggee Pet Store"
-            className="h-12 w-auto rounded-full object-cover shadow-[var(--shadow-warm)]"
+            className="h-14 w-auto rounded-full object-cover shadow-[var(--shadow-warm)]"
           />
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
@@ -292,39 +292,97 @@ function Stat({ value, label, big = false }: { value: string; label: string; big
 }
 
 function SocialProof() {
-  const reviews = [
-    { name: "Mariana S.", text: "Atendimento incrível e preços ótimos. Sempre encontro a ração do meu cachorro com facilidade.", pet: "tutora do Thor" },
-    { name: "Rafael M.", text: "Loja completa e o pessoal entende muito de pet. Recomendo de olhos fechados!", pet: "tutor da Mel" },
-    { name: "Camila O.", text: "Compro medicamentos e acessórios há anos. Confiança total na equipe da Doggee.", pet: "tutora do Bidu" },
+  const testimonials = [
+    {
+      name: "Beatriz Cost",
+      text: "Atendimento ótimo, qualidade dos produtos maravilhosa, local sempre limpo e aconchegante, esse é o único lugar que eu compro de tão bom que é os produtos, super recomendo, preços ótimos e tudo que preciso.",
+      highlight: true,
+    },
+    {
+      name: "Thalita Lima",
+      text: "Quero deixar registrado meu elogio ao atendente Bruno. Ele me atendeu super bem, foi muito educado, atencioso e paciente. Tirou todas as minhas dúvidas com clareza e demonstrou muita dedicação no atendimento.",
+      highlight: false,
+    },
+    {
+      name: "Gabrielle",
+      text: "Ótimo atendimento dos funcionários, adorei o ambiente super educados e atenciosos, preços baixos e acessíveis.",
+      highlight: false,
+    },
+    {
+      name: "Giovanna Oliveira",
+      text: "Ótimo atendimento, muitas variedades de produtos.",
+      highlight: false,
+    },
+    {
+      name: "Robson Cavalcanti",
+      text: "Já sou cliente há muito tempo, sempre fui bem atendido... indico de olhos fechados.",
+      highlight: false,
+    },
+    {
+      name: "Kelly Fernanda Pinto",
+      text: "A equipe é sempre muito atenciosa e educados... Os preços são justos e sempre tem tudo que preciso.",
+      highlight: false,
+    },
+    {
+      name: "Breno Rocha",
+      text: "O lugar realmente tem uma grande variedade de produtos, é limpo e organizado, algo que prezo muito. Sempre sou muito bem atendido.",
+      highlight: false,
+    },
+    {
+      name: "Bianca Camara",
+      text: "Minha experiência é sempre incrível, compro aqui a um bom tempo e o atendimento é sempre ótimo, muito atenciosos!",
+      highlight: false,
+    },
   ];
+
   return (
-    <section id="avaliacoes" className="py-20 md:py-28">
+    <section id="avaliacoes" className="py-20 md:py-28 relative overflow-hidden">
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 10% 30%, var(--primary) 0, transparent 35%), radial-gradient(circle at 90% 70%, var(--primary-glow) 0, transparent 40%)",
+        }}
+      />
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-sm font-bold text-primary uppercase tracking-wider">Prova social</span>
-            <h2 className="mt-2 text-4xl md:text-5xl font-bold">Mais de 450 tutores aprovam.</h2>
+            <span className="text-sm font-bold text-primary uppercase tracking-wider">Depoimentos dos Clientes</span>
+            <h2 className="mt-2 text-4xl md:text-5xl font-bold">Quem conhece, recomenda.</h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Nota máxima no Google com a confiança de quem cuida do que mais ama.
+              Avaliações reais de clientes que confiam na Doggee para cuidar dos seus pets.
             </p>
           </div>
           <div className="flex items-center gap-3 rounded-2xl bg-primary text-primary-foreground px-5 py-4 shadow-[var(--shadow-warm)]">
             <div className="flex">{[0,1,2,3,4].map(i => <Star key={i} className="h-5 w-5 fill-current" />)}</div>
             <div>
               <div className="font-display font-bold text-2xl leading-none">5,0</div>
-              <div className="text-xs opacity-90 mt-1">+450 avaliações</div>
+              <div className="text-xs opacity-90 mt-1">+450 avaliações no Google</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-5">
-          {reviews.map(r => (
-            <figure key={r.name} className="rounded-2xl bg-card border border-border p-7 hover:border-primary transition">
-              <div className="flex gap-0.5">{[0,1,2,3,4].map(i => <Star key={i} className="h-4 w-4 fill-primary text-primary" />)}</div>
-              <blockquote className="mt-4 text-foreground/90 leading-relaxed">"{r.text}"</blockquote>
-              <figcaption className="mt-5 text-sm">
-                <div className="font-semibold">{r.name}</div>
-                <div className="text-muted-foreground">{r.pet}</div>
+        <div className="mt-12 grid md:grid-cols-2 xl:grid-cols-4 gap-5 auto-rows-fr">
+          {testimonials.map((t) => (
+            <figure
+              key={t.name}
+              className={`relative rounded-2xl border p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-warm)] flex flex-col ${
+                t.highlight
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-card border-border hover:border-primary"
+              }`}
+            >
+              <div className={`flex gap-0.5 mb-4 ${t.highlight ? "text-primary-foreground" : ""}`}>
+                {[0,1,2,3,4].map(i => (
+                  <Star key={i} className={`h-4 w-4 ${t.highlight ? "fill-current" : "fill-primary text-primary"}`} />
+                ))}
+              </div>
+              <blockquote className={`text-lg leading-relaxed flex-grow ${t.highlight ? "text-primary-foreground/95" : "text-foreground/90"}`}>
+                "{t.text}"
+              </blockquote>
+              <figcaption className="mt-auto pt-5 border-t border-current/20">
+                <div className={`font-bold ${t.highlight ? "text-primary-foreground" : "text-foreground"}`}>{t.name}</div>
+                <div className={`text-sm ${t.highlight ? "text-primary-foreground/80" : "text-muted-foreground"}`}>Cliente Doggee</div>
               </figcaption>
             </figure>
           ))}
@@ -424,7 +482,7 @@ function Footer() {
             <img
               src={logoImg}
               alt="Doggee Pet Store"
-              className="h-12 w-auto rounded-full object-cover"
+              className="h-14 w-auto rounded-full object-cover"
             />
           </div>
           <p className="mt-4 text-sm text-muted-foreground max-w-xs">
