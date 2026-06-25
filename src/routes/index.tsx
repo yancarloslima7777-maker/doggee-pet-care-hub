@@ -644,3 +644,269 @@ function FloatingWhats() {
     </a>
   );
 }
+
+function Showcase({
+  onAdd,
+  cart,
+}: {
+  onAdd: (id: string) => void;
+  cart: Record<string, number>;
+}) {
+  return (
+    <section id="vitrine" className="py-20 md:py-28 bg-secondary/40 border-y border-border relative overflow-hidden">
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 15% 25%, var(--primary) 0, transparent 40%), radial-gradient(circle at 85% 75%, var(--primary-glow) 0, transparent 40%)",
+        }}
+      />
+      <div className="mx-auto max-w-7xl px-5">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 text-sm font-bold text-primary uppercase tracking-wider">
+              <Sparkles className="h-4 w-4" /> Vitrine Premium
+            </span>
+            <h2 className="mt-2 text-4xl md:text-5xl font-bold">Destaques da Loja</h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              Monte seu pedido em poucos cliques. Adicione os produtos e finalize direto no nosso WhatsApp.
+            </p>
+          </div>
+          <div className="text-sm text-muted-foreground bg-card border border-border rounded-xl px-4 py-3">
+            <strong className="text-foreground">Dica:</strong> use o carrinho flutuante para revisar e enviar o pedido.
+          </div>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {PRODUCTS.map((p) => {
+            const qty = cart[p.id] ?? 0;
+            return (
+              <article
+                key={p.id}
+                className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-[var(--shadow-warm)] transition"
+              >
+                <div className="relative aspect-square bg-[var(--gradient-warm)] overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-500"
+                  />
+                  {qty > 0 && (
+                    <span className="absolute top-3 right-3 inline-flex items-center justify-center min-w-7 h-7 px-2 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-md">
+                      {qty}
+                    </span>
+                  )}
+                  <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-card/90 backdrop-blur px-2.5 py-1 text-[11px] font-semibold text-foreground border border-border">
+                    {p.tag}
+                  </span>
+                </div>
+                <div className="flex flex-col flex-grow p-5">
+                  <h3 className="text-base font-semibold leading-snug text-foreground line-clamp-3 min-h-[3.75rem]">
+                    {p.name}
+                  </h3>
+                  <span className="mt-3 inline-flex w-fit items-center gap-1 rounded-full bg-accent text-accent-foreground px-3 py-1 text-xs font-semibold">
+                    Consulte o Preço
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => onAdd(p.id)}
+                    className="mt-auto pt-5"
+                  >
+                    <span className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground px-4 py-3 text-sm font-semibold hover:bg-primary-glow transition shadow-sm">
+                      <Plus className="h-4 w-4" /> Adicionar ao Pedido
+                    </span>
+                  </button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FloatingCart({ count, onClick }: { count: number; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Abrir carrinho de pedidos"
+      className="fixed bottom-24 right-6 z-50 inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-warm)] hover:scale-110 transition"
+    >
+      <ShoppingCart className="h-6 w-6" />
+      {count > 0 && (
+        <span className="absolute -top-1 -right-1 min-w-6 h-6 px-1.5 inline-flex items-center justify-center rounded-full bg-foreground text-background text-xs font-bold border-2 border-background">
+          {count}
+        </span>
+      )}
+    </button>
+  );
+}
+
+function CartDrawer({
+  open,
+  onOpenChange,
+  items,
+  addOne,
+  removeOne,
+  removeAll,
+  clearCart,
+}: {
+  open: boolean;
+  onOpenChange: (v: boolean) => void;
+  items: CartItem[];
+  addOne: (id: string) => void;
+  removeOne: (id: string) => void;
+  removeAll: (id: string) => void;
+  clearCart: () => void;
+}) {
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+
+  const totalCount = items.reduce((s, i) => s + i.qty, 0);
+
+  const buildWhatsAppUrl = () => {
+    const lines = items.map((i) => `${i.qty}x ${i.product.name}`).join(", ");
+    let msg = `Olá! Gostaria de fazer o seguinte pedido: ${lines}.`;
+    if (name.trim()) msg += ` Meu Nome: ${name.trim()}.`;
+    if (address.trim()) msg += ` Endereço: ${address.trim()}.`;
+    return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`;
+  };
+
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent
+        side="right"
+        className="w-full sm:max-w-md flex flex-col gap-0 p-0 bg-background"
+      >
+        <SheetHeader className="px-6 pt-6 pb-4 border-b border-border text-left">
+          <SheetTitle className="flex items-center gap-2 text-xl font-display">
+            <ShoppingCart className="h-5 w-5 text-primary" />
+            Seu Pedido
+            {totalCount > 0 && (
+              <span className="ml-1 inline-flex items-center justify-center min-w-6 h-6 px-2 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                {totalCount}
+              </span>
+            )}
+          </SheetTitle>
+          <SheetDescription>
+            Revise os itens e envie o pedido diretamente pelo WhatsApp.
+          </SheetDescription>
+        </SheetHeader>
+
+        <div className="flex-1 overflow-y-auto px-6 py-5">
+          {items.length === 0 ? (
+            <div className="h-full flex flex-col items-center justify-center text-center text-muted-foreground py-12">
+              <ShoppingCart className="h-12 w-12 mb-4 text-primary/40" />
+              <p className="font-semibold text-foreground">Seu carrinho está vazio</p>
+              <p className="text-sm mt-1">Adicione produtos da Vitrine para começar.</p>
+            </div>
+          ) : (
+            <ul className="space-y-3">
+              {items.map(({ product, qty }) => (
+                <li
+                  key={product.id}
+                  className="flex gap-3 rounded-xl border border-border bg-card p-3"
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-16 w-16 rounded-lg object-contain bg-secondary/60 p-1 shrink-0"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold leading-snug line-clamp-2">
+                      {product.name}
+                    </p>
+                    <div className="mt-2 flex items-center justify-between">
+                      <div className="inline-flex items-center rounded-full border border-border bg-background">
+                        <button
+                          type="button"
+                          onClick={() => removeOne(product.id)}
+                          aria-label="Diminuir quantidade"
+                          className="h-8 w-8 inline-flex items-center justify-center text-foreground hover:text-primary"
+                        >
+                          <Minus className="h-3.5 w-3.5" />
+                        </button>
+                        <span className="w-6 text-center text-sm font-bold">{qty}</span>
+                        <button
+                          type="button"
+                          onClick={() => addOne(product.id)}
+                          aria-label="Aumentar quantidade"
+                          className="h-8 w-8 inline-flex items-center justify-center text-foreground hover:text-primary"
+                        >
+                          <Plus className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeAll(product.id)}
+                        aria-label="Remover item"
+                        className="text-muted-foreground hover:text-destructive transition p-1"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {items.length > 0 && (
+            <div className="mt-6 space-y-3">
+              <div>
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                  Seu nome (opcional)
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ex: Maria Silva"
+                  className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                  Endereço de entrega (opcional)
+                </label>
+                <textarea
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Rua, número, bairro..."
+                  rows={2}
+                  className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm resize-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {items.length > 0 && (
+          <div className="border-t border-border px-6 py-4 space-y-2 bg-secondary/40">
+            <a
+              href={buildWhatsAppUrl()}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => onOpenChange(false)}
+              className="flex items-center justify-center gap-2 rounded-xl bg-whatsapp text-whatsapp-foreground px-5 py-3.5 font-semibold hover:opacity-90 transition shadow-[var(--shadow-warm)]"
+            >
+              <Send className="h-5 w-5" /> Enviar Pedido via WhatsApp
+            </a>
+            <button
+              type="button"
+              onClick={clearCart}
+              className="w-full inline-flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-destructive transition py-1.5"
+            >
+              <X className="h-4 w-4" /> Limpar carrinho
+            </button>
+          </div>
+        )}
+      </SheetContent>
+    </Sheet>
+  );
+}
