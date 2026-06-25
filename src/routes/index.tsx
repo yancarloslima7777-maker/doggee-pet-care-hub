@@ -425,6 +425,19 @@ function Hours() {
               <span>→</span>
             </a>
           </div>
+          <div className="mt-6 rounded-2xl overflow-hidden border border-border shadow-sm">
+            <iframe
+              src="https://www.google.com/maps?q=R.%20Estev%C3%A3o%20Fernandes%2C%20536%20-%20Jardim%20Santa%20Edwiges%2C%20Graja%C3%BA%2C%20S%C3%A3o%20Paulo%20-%20SP&output=embed"
+              width="100%"
+              height="260"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localização Doggee Pet Store"
+              className="block"
+            />
+          </div>
         </div>
       </div>
     </section>
