@@ -60,19 +60,91 @@ const PHONE = "tel:+551155182305";
 const MAPS = "https://www.google.com/maps/search/?api=1&query=R.+Estev%C3%A3o+Fernandes+536+Graja%C3%BA+S%C3%A3o+Paulo";
 const INSTAGRAM = "https://instagram.com/doggeepets";
 
+const WHATSAPP_NUMBER = "5511982870213";
+const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá!%20Vim%20pelo%20site%20da%20Doggee%20e%20gostaria%20de%20fazer%20um%20pedido.`;
+const PHONE = "tel:+551155182305";
+const MAPS = "https://www.google.com/maps/search/?api=1&query=R.+Estev%C3%A3o+Fernandes+536+Graja%C3%BA+S%C3%A3o+Paulo";
+const INSTAGRAM = "https://instagram.com/doggeepets";
+
+type Product = {
+  id: string;
+  name: string;
+  tag: string;
+  image: string;
+};
+
+const PRODUCTS: Product[] = [
+  { id: "p1", name: "Ração Golden Formula Porte Pequeno Filhote 10kg", tag: "Cães • Filhote", image: prodFilhotePP },
+  { id: "p2", name: "Ração Golden Formula Raças Grandes Adulto 15kg", tag: "Cães • Adulto", image: prodGrandeAdulto },
+  { id: "p3", name: "Ração Golden Formula Sabor Peru Porte Pequeno Adulto 10kg", tag: "Cães • Adulto", image: prodPeruPP },
+  { id: "p4", name: "Ração Golden Special Raças Grandes Adulto 15kg", tag: "Cães • Adulto", image: prodSpecialGrande },
+  { id: "p5", name: "Ração Golden Formula Porte Pequeno Adulto 15kg", tag: "Cães • Adulto", image: prodFormulaPPAdulto },
+  { id: "p6", name: "Ração Golden Special Porte Pequeno Adulto 15kg", tag: "Cães • Adulto", image: prodSpecialPP },
+  { id: "p7", name: "Sachê Whiskas Carne ao Molho para Gatos Adultos", tag: "Gatos • Úmido", image: prodWhiskas },
+];
+
+type CartItem = { product: Product; qty: number };
+
 function Home() {
+  const [cart, setCart] = useState<Record<string, number>>({});
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const addToCart = (id: string) => {
+    setCart((c) => ({ ...c, [id]: (c[id] ?? 0) + 1 }));
+  };
+  const removeOne = (id: string) => {
+    setCart((c) => {
+      const next = { ...c };
+      const v = (next[id] ?? 0) - 1;
+      if (v <= 0) delete next[id];
+      else next[id] = v;
+      return next;
+    });
+  };
+  const removeAll = (id: string) => {
+    setCart((c) => {
+      const next = { ...c };
+      delete next[id];
+      return next;
+    });
+  };
+  const clearCart = () => setCart({});
+
+  const items: CartItem[] = useMemo(
+    () =>
+      Object.entries(cart)
+        .map(([id, qty]) => {
+          const product = PRODUCTS.find((p) => p.id === id)!;
+          return product ? { product, qty } : null;
+        })
+        .filter(Boolean) as CartItem[],
+    [cart],
+  );
+  const totalCount = items.reduce((s, i) => s + i.qty, 0);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
       <TrustBar />
       <Categories />
+      <Showcase onAdd={addToCart} cart={cart} />
       <About />
       <SocialProof />
       <Hours />
       <CTASection />
       <Footer />
       <FloatingWhats />
+      <FloatingCart count={totalCount} onClick={() => setCartOpen(true)} />
+      <CartDrawer
+        open={cartOpen}
+        onOpenChange={setCartOpen}
+        items={items}
+        addOne={addToCart}
+        removeOne={removeOne}
+        removeAll={removeAll}
+        clearCart={clearCart}
+      />
     </div>
   );
 }
@@ -82,6 +154,30 @@ function Header() {
     <header className="sticky top-0 z-40 backdrop-blur-md bg-background/85 border-b border-border">
       <div className="mx-auto max-w-7xl px-5 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center">
+          <img
+            src={logoImg}
+            alt="Doggee Pet Store"
+            className="h-14 w-auto rounded-full object-cover shadow-[var(--shadow-warm)]"
+          />
+        </a>
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
+          <a href="#categorias" className="hover:text-primary transition">Produtos</a>
+          <a href="#vitrine" className="hover:text-primary transition">Vitrine</a>
+          <a href="#sobre" className="hover:text-primary transition">Sobre</a>
+          <a href="#avaliacoes" className="hover:text-primary transition">Avaliações</a>
+        </nav>
+        <a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-whatsapp text-whatsapp-foreground px-4 py-2 text-sm font-semibold hover:opacity-90 transition shadow-sm"
+        >
+          <MessageCircle className="h-4 w-4" /> WhatsApp
+        </a>
+      </div>
+    </header>
+  );
+}
           <img
             src={logoImg}
             alt="Doggee Pet Store"
