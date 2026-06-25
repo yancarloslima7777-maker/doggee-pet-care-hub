@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, useMemo } from "react";
 import {
   PawPrint,
   MessageCircle,
@@ -15,9 +16,30 @@ import {
   Heart,
   ShieldCheck,
   Quote,
+  ShoppingCart,
+  Plus,
+  Minus,
+  Trash2,
+  Send,
+  X,
+  Sparkles,
 } from "lucide-react";
 import heroImg from "@/assets/hero-pets.jpg";
 import logoImg from "@/assets/doggee-logo.png";
+import prodFilhotePP from "@/assets/products/golden-formula-pp-filhote.jpg";
+import prodGrandeAdulto from "@/assets/products/golden-formula-grande-adulto.jpg";
+import prodPeruPP from "@/assets/products/golden-formula-peru-pp.jpg";
+import prodSpecialGrande from "@/assets/products/golden-special-grande.jpg";
+import prodFormulaPPAdulto from "@/assets/products/golden-formula-pp-adulto.jpg";
+import prodSpecialPP from "@/assets/products/golden-special-pp.jpg";
+import prodWhiskas from "@/assets/products/whiskas-sache-carne.jpg";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 
 export const Route = createFileRoute("/")({
   head: () => ({
