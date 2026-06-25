@@ -359,19 +359,20 @@ function SocialProof() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className="relative rounded-2xl border p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-warm)] flex flex-col bg-primary text-primary-foreground border-primary"
+              className="relative rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-warm)] hover:border-primary/40 flex flex-col"
             >
+              <Quote className="h-7 w-7 text-primary mb-3" aria-hidden />
               <div className="flex gap-0.5 mb-4">
                 {[0,1,2,3,4].map(i => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
+                  <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                 ))}
               </div>
-              <blockquote className="text-lg leading-relaxed flex-grow text-primary-foreground/95">
+              <blockquote className="text-base leading-relaxed flex-grow text-foreground/85">
                 "{t.text}"
               </blockquote>
-              <figcaption className="mt-auto pt-5 border-t border-current/20">
-                <div className="font-bold text-primary-foreground">{t.name}</div>
-                <div className="text-sm text-primary-foreground/80">Cliente Doggee</div>
+              <figcaption className="mt-auto pt-5 border-t border-border">
+                <div className="font-bold text-foreground">{t.name}</div>
+                <div className="text-sm text-muted-foreground">Cliente Doggee</div>
               </figcaption>
             </figure>
           ))}
