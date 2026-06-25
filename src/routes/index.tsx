@@ -55,11 +55,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const WHATSAPP = "https://wa.me/5511982870213?text=Olá!%20Vim%20pelo%20site%20da%20Doggee%20e%20gostaria%20de%20fazer%20um%20pedido.";
-const PHONE = "tel:+551155182305";
-const MAPS = "https://www.google.com/maps/search/?api=1&query=R.+Estev%C3%A3o+Fernandes+536+Graja%C3%BA+S%C3%A3o+Paulo";
-const INSTAGRAM = "https://instagram.com/doggeepets";
-
 const WHATSAPP_NUMBER = "5511982870213";
 const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá!%20Vim%20pelo%20site%20da%20Doggee%20e%20gostaria%20de%20fazer%20um%20pedido.`;
 const PHONE = "tel:+551155182305";
