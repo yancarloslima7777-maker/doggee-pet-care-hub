@@ -296,42 +296,30 @@ function SocialProof() {
     {
       name: "Beatriz Cost",
       text: "Atendimento ótimo, qualidade dos produtos maravilhosa, local sempre limpo e aconchegante, esse é o único lugar que eu compro de tão bom que é os produtos, super recomendo, preços ótimos e tudo que preciso.",
-      highlight: true,
     },
     {
       name: "Thalita Lima",
       text: "Quero deixar registrado meu elogio ao atendente Bruno. Ele me atendeu super bem, foi muito educado, atencioso e paciente. Tirou todas as minhas dúvidas com clareza e demonstrou muita dedicação no atendimento.",
-      highlight: false,
     },
     {
       name: "Gabrielle",
       text: "Ótimo atendimento dos funcionários, adorei o ambiente super educados e atenciosos, preços baixos e acessíveis.",
-      highlight: false,
     },
     {
       name: "Giovanna Oliveira",
       text: "Ótimo atendimento, muitas variedades de produtos.",
-      highlight: false,
     },
     {
       name: "Robson Cavalcanti",
       text: "Já sou cliente há muito tempo, sempre fui bem atendido... indico de olhos fechados.",
-      highlight: false,
     },
     {
       name: "Kelly Fernanda Pinto",
       text: "A equipe é sempre muito atenciosa e educados... Os preços são justos e sempre tem tudo que preciso.",
-      highlight: false,
     },
     {
       name: "Breno Rocha",
       text: "O lugar realmente tem uma grande variedade de produtos, é limpo e organizado, algo que prezo muito. Sempre sou muito bem atendido.",
-      highlight: false,
-    },
-    {
-      name: "Bianca Camara",
-      text: "Minha experiência é sempre incrível, compro aqui a um bom tempo e o atendimento é sempre ótimo, muito atenciosos!",
-      highlight: false,
     },
   ];
 
@@ -366,23 +354,19 @@ function SocialProof() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className={`relative rounded-2xl border p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-warm)] flex flex-col ${
-                t.highlight
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-card border-border hover:border-primary"
-              }`}
+              className="relative rounded-2xl border p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-warm)] flex flex-col bg-primary text-primary-foreground border-primary"
             >
-              <div className={`flex gap-0.5 mb-4 ${t.highlight ? "text-primary-foreground" : ""}`}>
+              <div className="flex gap-0.5 mb-4">
                 {[0,1,2,3,4].map(i => (
-                  <Star key={i} className={`h-4 w-4 ${t.highlight ? "fill-current" : "fill-primary text-primary"}`} />
+                  <Star key={i} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <blockquote className={`text-lg leading-relaxed flex-grow ${t.highlight ? "text-primary-foreground/95" : "text-foreground/90"}`}>
+              <blockquote className="text-lg leading-relaxed flex-grow text-primary-foreground/95">
                 "{t.text}"
               </blockquote>
               <figcaption className="mt-auto pt-5 border-t border-current/20">
-                <div className={`font-bold ${t.highlight ? "text-primary-foreground" : "text-foreground"}`}>{t.name}</div>
-                <div className={`text-sm ${t.highlight ? "text-primary-foreground/80" : "text-muted-foreground"}`}>Cliente Doggee</div>
+                <div className="font-bold text-primary-foreground">{t.name}</div>
+                <div className="text-sm text-primary-foreground/80">Cliente Doggee</div>
               </figcaption>
             </figure>
           ))}
@@ -440,6 +424,19 @@ function Hours() {
               <span className="flex items-center gap-3"><MapPin className="h-5 w-5" /> Ver no Google Maps</span>
               <span>→</span>
             </a>
+          </div>
+          <div className="mt-6 rounded-2xl overflow-hidden border border-border shadow-sm">
+            <iframe
+              src="https://www.google.com/maps?q=R.%20Estev%C3%A3o%20Fernandes%2C%20536%20-%20Jardim%20Santa%20Edwiges%2C%20Graja%C3%BA%2C%20S%C3%A3o%20Paulo%20-%20SP&output=embed"
+              width="100%"
+              height="260"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localização Doggee Pet Store"
+              className="block"
+            />
           </div>
         </div>
       </div>
