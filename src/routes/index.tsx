@@ -16,6 +16,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import heroImg from "@/assets/hero-pets.jpg";
+import logoImg from "@/assets/doggee-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,11 +58,12 @@ function Header() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-background/85 border-b border-border">
       <div className="mx-auto max-w-7xl px-5 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 font-display font-bold text-xl">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[var(--shadow-warm)]">
-            <PawPrint className="h-5 w-5" />
-          </span>
-          <span>Doggee <span className="text-primary">Pet Store</span></span>
+        <a href="#top" className="flex items-center">
+          <img
+            src={logoImg}
+            alt="Doggee Pet Store"
+            className="h-12 w-auto rounded-full object-cover shadow-[var(--shadow-warm)]"
+          />
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
           <a href="#categorias" className="hover:text-primary transition">Produtos</a>
@@ -418,11 +420,12 @@ function Footer() {
     <footer className="border-t border-border bg-secondary/40">
       <div className="mx-auto max-w-7xl px-5 py-12 grid md:grid-cols-3 gap-8">
         <div>
-          <div className="flex items-center gap-2 font-display font-bold text-xl">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-              <PawPrint className="h-5 w-5" />
-            </span>
-            Doggee Pet Store
+          <div className="flex items-center">
+            <img
+              src={logoImg}
+              alt="Doggee Pet Store"
+              className="h-12 w-auto rounded-full object-cover"
+            />
           </div>
           <p className="mt-4 text-sm text-muted-foreground max-w-xs">
             O cuidado que seu pet merece — rações, acessórios e medicamentos no atacado e varejo.
