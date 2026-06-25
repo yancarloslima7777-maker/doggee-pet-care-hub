@@ -14,6 +14,7 @@ import {
   Truck,
   Heart,
   ShieldCheck,
+  Quote,
 } from "lucide-react";
 import heroImg from "@/assets/hero-pets.jpg";
 import logoImg from "@/assets/doggee-logo.png";
