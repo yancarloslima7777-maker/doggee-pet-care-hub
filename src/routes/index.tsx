@@ -166,7 +166,7 @@ function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
           <a href="#categorias" className="hover:text-primary transition">Produtos</a>
-          <a href="#vitrine" className="hover:text-primary transition">Vitrine</a>
+          <a href="#vitrine" className="hover:text-primary transition">Marcas</a>
           <a href="#sobre" className="hover:text-primary transition">Sobre</a>
           <a href="#avaliacoes" className="hover:text-primary transition">Avaliações</a>
         </nav>
