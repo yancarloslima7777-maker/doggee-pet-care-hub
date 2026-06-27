@@ -671,62 +671,65 @@ function Showcase({
         }}
       />
       <div className="mx-auto max-w-7xl px-5">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 text-sm font-bold text-primary uppercase tracking-wider">
-              <Sparkles className="h-4 w-4" /> Vitrine Premium
-            </span>
-            <h2 className="mt-2 text-4xl md:text-5xl font-bold">Destaques da Loja</h2>
-            <p className="mt-4 text-muted-foreground text-lg">
-              Monte seu pedido em poucos cliques. Adicione os produtos e finalize direto no nosso WhatsApp.
-            </p>
-          </div>
-          <div className="text-sm text-muted-foreground bg-card border border-border rounded-xl px-4 py-3">
-            <strong className="text-foreground">Dica:</strong> use o carrinho flutuante para revisar e enviar o pedido.
-          </div>
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="inline-flex items-center gap-2 text-sm font-bold text-primary uppercase tracking-wider">
+            <Sparkles className="h-4 w-4" /> Nossas Marcas
+          </span>
+          <h2 className="mt-2 text-4xl md:text-5xl font-bold">As marcas que cuidam do seu pet.</h2>
+          <p className="mt-4 text-muted-foreground text-lg">
+            Trabalhamos com as marcas mais confiáveis do mercado. Monte seu pedido e finalize no WhatsApp em poucos cliques.
+          </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {PRODUCTS.map((p) => {
             const qty = cart[p.id] ?? 0;
             return (
               <article
                 key={p.id}
-                className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-[var(--shadow-warm)] transition"
+                className="group flex flex-col rounded-3xl bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-[var(--shadow-warm)] transition"
               >
-                <div className="relative aspect-square bg-[var(--gradient-warm)] overflow-hidden">
+                <div className="relative aspect-[5/4] sm:aspect-[16/10] bg-[var(--gradient-warm)] overflow-hidden">
                   <img
                     src={p.image}
                     alt={p.name}
-                    width={1024}
-                    height={1024}
+                    width={1280}
+                    height={896}
                     loading="lazy"
-                    className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-500"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition duration-500"
                   />
                   {qty > 0 && (
-                    <span className="absolute top-3 right-3 inline-flex items-center justify-center min-w-7 h-7 px-2 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-md">
+                    <span className="absolute top-4 right-4 inline-flex items-center justify-center min-w-8 h-8 px-2.5 rounded-full bg-primary text-primary-foreground text-sm font-bold shadow-md">
                       {qty}
                     </span>
                   )}
-                  <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-card/90 backdrop-blur px-2.5 py-1 text-[11px] font-semibold text-foreground border border-border">
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1 rounded-full bg-card/90 backdrop-blur px-3 py-1 text-xs font-semibold text-foreground border border-border">
                     {p.tag}
                   </span>
                 </div>
-                <div className="flex flex-col flex-grow p-5">
-                  <h3 className="text-base font-semibold leading-snug text-foreground line-clamp-3 min-h-[3.75rem]">
+                <div className="flex flex-col flex-grow p-6 sm:p-8">
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold leading-tight text-foreground">
                     {p.name}
                   </h3>
-                  <span className="mt-3 inline-flex w-fit items-center gap-1 rounded-full bg-accent text-accent-foreground px-3 py-1 text-xs font-semibold">
-                    Consulte o Preço
-                  </span>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.brands.map((b) => (
+                      <span
+                        key={b}
+                        className="inline-flex items-center rounded-full bg-accent text-accent-foreground px-3 py-1 text-xs font-semibold"
+                      >
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-5 text-base text-muted-foreground leading-relaxed flex-grow">
+                    {p.description}
+                  </p>
                   <button
                     type="button"
                     onClick={() => onAdd(p.id)}
-                    className="mt-auto pt-5"
+                    className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-4 text-base font-semibold hover:bg-primary-glow transition shadow-[var(--shadow-warm)]"
                   >
-                    <span className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground px-4 py-3 text-sm font-semibold hover:bg-primary-glow transition shadow-sm">
-                      <Plus className="h-4 w-4" /> Adicionar ao Pedido
-                    </span>
+                    <Plus className="h-5 w-5" /> Adicionar ao pedido
                   </button>
                 </div>
               </article>
@@ -737,6 +740,7 @@ function Showcase({
     </section>
   );
 }
+
 
 function FloatingCart({ count, onClick }: { count: number; onClick: () => void }) {
   return (
