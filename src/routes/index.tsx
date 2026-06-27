@@ -26,13 +26,8 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-pets.jpg";
 import logoImg from "@/assets/doggee-logo.png";
-import prodFilhotePP from "@/assets/products/golden-formula-pp-filhote.jpg";
-import prodGrandeAdulto from "@/assets/products/golden-formula-grande-adulto.jpg";
-import prodPeruPP from "@/assets/products/golden-formula-peru-pp.jpg";
-import prodSpecialGrande from "@/assets/products/golden-special-grande.jpg";
-import prodFormulaPPAdulto from "@/assets/products/golden-formula-pp-adulto.jpg";
-import prodSpecialPP from "@/assets/products/golden-special-pp.jpg";
-import prodWhiskas from "@/assets/products/whiskas-sache-carne.jpg";
+import brandPremierGolden from "@/assets/brands/premier-golden.jpg";
+import brandRacoes from "@/assets/brands/racoes-selecionadas.jpg";
 import {
   Sheet,
   SheetContent,
@@ -65,18 +60,32 @@ type Product = {
   id: string;
   name: string;
   tag: string;
+  description: string;
+  brands: string[];
   image: string;
 };
 
 const PRODUCTS: Product[] = [
-  { id: "p1", name: "Ração Golden Formula Porte Pequeno Filhote 10kg", tag: "Cães • Filhote", image: prodFilhotePP },
-  { id: "p2", name: "Ração Golden Formula Raças Grandes Adulto 15kg", tag: "Cães • Adulto", image: prodGrandeAdulto },
-  { id: "p3", name: "Ração Golden Formula Sabor Peru Porte Pequeno Adulto 10kg", tag: "Cães • Adulto", image: prodPeruPP },
-  { id: "p4", name: "Ração Golden Special Raças Grandes Adulto 15kg", tag: "Cães • Adulto", image: prodSpecialGrande },
-  { id: "p5", name: "Ração Golden Formula Porte Pequeno Adulto 15kg", tag: "Cães • Adulto", image: prodFormulaPPAdulto },
-  { id: "p6", name: "Ração Golden Special Porte Pequeno Adulto 15kg", tag: "Cães • Adulto", image: prodSpecialPP },
-  { id: "p7", name: "Sachê Whiskas Carne ao Molho para Gatos Adultos", tag: "Gatos • Úmido", image: prodWhiskas },
+  {
+    id: "linha-premier-golden",
+    name: "Linha Premier & Golden",
+    tag: "Premium",
+    description:
+      "Nutrição de alta qualidade e o cuidado que o seu pet merece.",
+    brands: ["Premier", "Golden"],
+    image: brandPremierGolden,
+  },
+  {
+    id: "racoes-selecionadas",
+    name: "Rações Selecionadas",
+    tag: "Mais procuradas",
+    description:
+      "As marcas preferidas e mais recomendadas do mercado para todas as fases da vida do seu companheiro.",
+    brands: ["Fórmula Natural", "Magnus", "Quatree", "Special Dog"],
+    image: brandRacoes,
+  },
 ];
+
 
 type CartItem = { product: Product; qty: number };
 
