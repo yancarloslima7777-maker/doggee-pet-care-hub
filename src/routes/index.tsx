@@ -816,7 +816,7 @@ function CartDrawer({
             <div className="h-full flex flex-col items-center justify-center text-center text-muted-foreground py-12">
               <ShoppingCart className="h-12 w-12 mb-4 text-primary/40" />
               <p className="font-semibold text-foreground">Seu carrinho está vazio</p>
-              <p className="text-sm mt-1">Adicione produtos da Vitrine para começar.</p>
+              <p className="text-sm mt-1">Escolha uma das marcas para começar.</p>
             </div>
           ) : (
             <ul className="space-y-3">
