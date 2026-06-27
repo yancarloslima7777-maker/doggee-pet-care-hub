@@ -23,6 +23,9 @@ import {
   Send,
   X,
   Sparkles,
+  Award,
+  HeartHandshake,
+  Store,
 } from "lucide-react";
 import heroImg from "@/assets/hero-pets.jpg";
 import logoImg from "@/assets/doggee-logo.png";
@@ -130,6 +133,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
+      <Differentials />
       <TrustBar />
       <Categories />
       <Showcase onAdd={addToCart} cart={cart} />
@@ -256,6 +260,62 @@ function Hero() {
               <div className="text-xs text-muted-foreground mt-1">+450 tutores avaliaram</div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Differentials() {
+  const features = [
+    {
+      icon: Award,
+      title: "Marcas Originais",
+      text: "Trabalhamos apenas com as melhores e mais recomendadas rações do mercado, garantindo a saúde do seu pet.",
+      message: "Olá! Gostaria de consultar se vocês têm uma ração específica em estoque.",
+    },
+    {
+      icon: HeartHandshake,
+      title: "Atendimento Familiar",
+      text: "Uma equipe apaixonada por animais, pronta para te ajudar a escolher o melhor para o seu companheiro.",
+      message: "Olá! Preciso de ajuda para escolher a melhor ração/produto para o meu pet.",
+    },
+    {
+      icon: Store,
+      title: "Tradição na Região",
+      text: "Sua loja de confiança no bairro, oferecendo qualidade, preço justo e compromisso com o seu melhor amigo.",
+      message: "Olá! Gostaria de saber o endereço de vocês e os horários de funcionamento da loja física.",
+    },
+  ];
+
+  return (
+    <section className="py-14 md:py-20 bg-background border-b border-border">
+      <div className="mx-auto max-w-7xl px-5">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="text-sm font-bold text-primary uppercase tracking-wider">Por que escolher a Doggee</span>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold">Diferenciais do Nosso Pet Shop</h2>
+        </div>
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map(({ icon: Icon, title, text, message }) => (
+            <div
+              key={title}
+              className="group flex flex-col rounded-2xl bg-card border border-border p-7 text-center hover:border-primary/40 hover:shadow-[var(--shadow-soft)] transition"
+            >
+              <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
+                <Icon className="h-7 w-7" />
+              </div>
+              <h3 className="mt-5 text-xl font-bold">{title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-grow">{text}</p>
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-foreground hover:border-primary hover:text-primary hover:bg-accent transition"
+              >
+                <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>
