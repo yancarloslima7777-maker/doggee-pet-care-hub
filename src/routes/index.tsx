@@ -133,6 +133,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
+      <Differentials />
       <TrustBar />
       <Categories />
       <Showcase onAdd={addToCart} cart={cart} />
