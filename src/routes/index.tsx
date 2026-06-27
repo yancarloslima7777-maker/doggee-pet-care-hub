@@ -775,8 +775,9 @@ function Showcase({
                     {p.brands.map((b) => (
                       <span
                         key={b}
-                        className="inline-flex items-center rounded-full bg-accent text-accent-foreground px-3 py-1 text-xs font-semibold"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white border border-border/80 px-3.5 py-1.5 text-sm font-bold text-foreground shadow-sm"
                       >
+                        <Star className="h-3.5 w-3.5 fill-primary text-primary shrink-0" />
                         {b}
                       </span>
                     ))}
