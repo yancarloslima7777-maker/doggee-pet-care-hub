@@ -411,9 +411,9 @@ function About() {
       <div className="mx-auto max-w-7xl px-5 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <span className="text-sm font-bold text-primary uppercase tracking-wider">Sobre a Doggee</span>
-          <h2 className="mt-2 text-4xl md:text-5xl font-bold">Uma Doggee Pet feita por quem ama animais.</h2>
+          <h2 className="mt-2 text-4xl md:text-5xl font-bold">A Doggee Pet, feita por quem ama animais.</h2>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Somos uma Doggee Pet dedicada a oferecer o cuidado e carinho que seu pet merece. Entregamos soluções completas no atacado e varejo, desde rações de alta qualidade até medicamentos e acessórios essenciais para o bem-estar do seu animal.
+            Somos a Doggee Pet, dedicada a oferecer o cuidado e carinho que seu pet merece. Entregamos soluções completas no atacado e varejo, desde rações de alta qualidade até medicamentos e acessórios essenciais para o bem-estar do seu animal.
           </p>
           <ul className="mt-7 space-y-3 text-foreground/90">
             {[
