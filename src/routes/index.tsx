@@ -42,11 +42,11 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Pet Shop Doggee — Rações, Acessórios e Medicamentos | Grajaú SP" },
+      { title: "Pet Shop Doggee — Rações, Acessórios e Medicamentos | Piraporinha SP" },
       {
         name: "description",
         content:
-          "Pet Shop Doggee no Grajaú: rações, acessórios, gaiolas e medicamentos veterinários no atacado e varejo. Mais de 450 avaliações 5 estrelas no Google.",
+          "Pet Shop Doggee no Piraporinha: rações, acessórios, gaiolas e medicamentos veterinários no atacado e varejo. Mais de 450 avaliações 5 estrelas no Google.",
       },
     ],
   }),
@@ -164,7 +164,7 @@ function Header() {
         <a href="#top" className="flex items-center">
           <img
             src={logoImg}
-            alt="Doggee Pet Store"
+            alt="Doggee Doggee Pet"
             className="h-14 w-auto rounded-full object-cover shadow-[var(--shadow-warm)]"
           />
         </a>
@@ -206,7 +206,7 @@ function Hero() {
             O cuidado que <span className="text-primary">seu pet</span> merece.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground max-w-xl leading-relaxed">
-            Rações, acessórios, gaiolas e medicamentos veterinários no atacado e varejo, com excelente custo-benefício e atendimento dedicado no Grajaú.
+            Rações, acessórios, gaiolas e medicamentos veterinários no atacado e varejo, com excelente custo-benefício e atendimento dedicado no Piraporinha.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -327,7 +327,7 @@ function TrustBar() {
     { icon: Truck, label: "Atacado & Varejo" },
     { icon: ShieldCheck, label: "Produtos de marcas líderes" },
     { icon: Heart, label: "Foco no bem-estar animal" },
-    { icon: MapPin, label: "Grajaú • São Paulo / SP" },
+    { icon: MapPin, label: "Piraporinha • São Paulo / SP" },
   ];
   return (
     <section className="border-y border-border bg-secondary/50">
@@ -411,16 +411,16 @@ function About() {
       <div className="mx-auto max-w-7xl px-5 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <span className="text-sm font-bold text-primary uppercase tracking-wider">Sobre a Doggee</span>
-          <h2 className="mt-2 text-4xl md:text-5xl font-bold">Uma Pet Store feita por quem ama animais.</h2>
+          <h2 className="mt-2 text-4xl md:text-5xl font-bold">Uma Doggee Pet feita por quem ama animais.</h2>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Somos uma Pet Store dedicada a oferecer o cuidado e carinho que seu pet merece. Entregamos soluções completas no atacado e varejo, desde rações de alta qualidade até medicamentos e acessórios essenciais para o bem-estar do seu animal.
+            Somos uma Doggee Pet dedicada a oferecer o cuidado e carinho que seu pet merece. Entregamos soluções completas no atacado e varejo, desde rações de alta qualidade até medicamentos e acessórios essenciais para o bem-estar do seu animal.
           </p>
           <ul className="mt-7 space-y-3 text-foreground/90">
             {[
               "Estrutura completa de atacado e varejo",
               "Excelente custo-benefício para tutores e revendedores",
               "Atendimento focado no bem-estar animal",
-              "Reconhecimento e confiança da comunidade do Grajaú",
+              "Reconhecimento e confiança da comunidade do Piraporinha",
             ].map(t => (
               <li key={t} className="flex items-start gap-3">
                 <PawPrint className="h-5 w-5 text-primary mt-0.5 shrink-0" />
@@ -434,7 +434,7 @@ function About() {
           <Stat value="+450" label="Avaliações 5 estrelas no Google" big />
           <Stat value="5,0" label="Nota média de satisfação" />
           <Stat value="Atacado" label="& Varejo" />
-          <Stat value="Grajaú" label="São Paulo / SP" />
+          <Stat value="Piraporinha" label="São Paulo / SP" />
         </div>
       </div>
     </section>
@@ -572,7 +572,7 @@ function Hours() {
           <h3 className="font-display text-2xl font-bold">Onde nos encontrar</h3>
           <p className="mt-3 text-muted-foreground">
             R. Estevão Fernandes, 536<br />
-            Jardim Santa Edwiges — Grajaú<br />
+            Jardim Santa Edwiges — Piraporinha<br />
             São Paulo / SP
           </p>
           <div className="mt-6 space-y-3">
@@ -598,7 +598,7 @@ function Hours() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localização Doggee Pet Store"
+              title="Localização Doggee Doggee Pet"
               className="block"
             />
           </div>
@@ -670,7 +670,7 @@ function Footer() {
           <div className="flex items-center">
             <img
               src={logoImg}
-              alt="Doggee Pet Store"
+              alt="Doggee Doggee Pet"
               className="h-14 w-auto rounded-full object-cover"
             />
           </div>
@@ -689,12 +689,12 @@ function Footer() {
         <div className="text-sm">
           <div className="font-bold mb-3">Endereço</div>
           <p className="text-muted-foreground">
-            R. Estevão Fernandes, 536<br />Jardim Santa Edwiges — Grajaú<br />São Paulo / SP
+            R. Estevão Fernandes, 536<br />Jardim Santa Edwiges — Piraporinha<br />São Paulo / SP
           </p>
         </div>
       </div>
       <div className="border-t border-border py-5 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Doggee Pet Store. Todos os direitos reservados.
+        © {new Date().getFullYear()} Doggee Doggee Pet. Todos os direitos reservados.
       </div>
     </footer>
   );
