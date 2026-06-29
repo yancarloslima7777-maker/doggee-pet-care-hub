@@ -31,12 +31,14 @@ import heroImg from "@/assets/hero-pets.jpg";
 import logoImg from "@/assets/doggee-logo.png";
 import brandPremierGolden from "@/assets/brands/premier-golden.jpg";
 import brandRacoes from "@/assets/brands/racoes-selecionadas.jpg";
-import racaoPremier from "@/assets/racoes/premier.jpg.asset.json";
-import racaoGolden from "@/assets/racoes/golden.jpg.asset.json";
-import racaoFormulaNatural from "@/assets/racoes/formula-natural.webp.asset.json";
-import racaoMagnus from "@/assets/racoes/magnus.webp.asset.json";
-import racaoQuatree from "@/assets/racoes/quatree.webp.asset.json";
-import racaoSpecialDog from "@/assets/racoes/special-dog.webp.asset.json";
+const RACAO_IMAGES = {
+  premier: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=80",
+  golden: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=800&q=80",
+  formulaNatural: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=800&q=80",
+  magnus: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80",
+  quatree: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80",
+  specialDog: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80",
+};
 import {
   Sheet,
   SheetContent,
@@ -96,12 +98,12 @@ const PRODUCTS: Product[] = [
 ];
 
 const RACOES: Product[] = [
-  { id: "racao-premier", name: "Ração Premier", tag: "Super Premium", description: "", brands: [], image: racaoPremier.url },
-  { id: "racao-golden", name: "Ração Golden", tag: "Premium Especial", description: "", brands: [], image: racaoGolden.url },
-  { id: "racao-formula-natural", name: "Ração Fórmula Natural", tag: "Super Premium", description: "", brands: [], image: racaoFormulaNatural.url },
-  { id: "racao-magnus", name: "Ração Magnus", tag: "Premium", description: "", brands: [], image: racaoMagnus.url },
-  { id: "racao-quatree", name: "Ração Quatree", tag: "Premium", description: "", brands: [], image: racaoQuatree.url },
-  { id: "racao-special-dog", name: "Ração Special Dog", tag: "Premium", description: "", brands: [], image: racaoSpecialDog.url },
+  { id: "racao-premier", name: "Ração Premier", tag: "Super Premium", description: "", brands: [], image: RACAO_IMAGES.premier },
+  { id: "racao-golden", name: "Ração Golden", tag: "Premium Especial", description: "", brands: [], image: RACAO_IMAGES.golden },
+  { id: "racao-formula-natural", name: "Ração Fórmula Natural", tag: "Super Premium", description: "", brands: [], image: RACAO_IMAGES.formulaNatural },
+  { id: "racao-magnus", name: "Ração Magnus", tag: "Premium", description: "", brands: [], image: RACAO_IMAGES.magnus },
+  { id: "racao-quatree", name: "Ração Quatree", tag: "Premium", description: "", brands: [], image: RACAO_IMAGES.quatree },
+  { id: "racao-special-dog", name: "Ração Special Dog", tag: "Premium", description: "", brands: [], image: RACAO_IMAGES.specialDog },
 ];
 
 const ALL_PRODUCTS = [...PRODUCTS, ...RACOES];
