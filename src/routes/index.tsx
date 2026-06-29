@@ -137,7 +137,7 @@ function Home() {
     () =>
       Object.entries(cart)
         .map(([id, qty]) => {
-          const product = PRODUCTS.find((p) => p.id === id)!;
+          const product = ALL_PRODUCTS.find((p) => p.id === id)!;
           return product ? { product, qty } : null;
         })
         .filter(Boolean) as CartItem[],
