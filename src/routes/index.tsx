@@ -153,6 +153,7 @@ function Home() {
       <TrustBar />
       <Categories />
       <Showcase onAdd={addToCart} cart={cart} />
+      <Racoes onAdd={addToCart} cart={cart} />
       <About />
       <SocialProof />
       <Hours />
